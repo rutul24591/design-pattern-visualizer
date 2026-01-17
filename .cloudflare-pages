@@ -1,0 +1,25 @@
+# Cloudflare Pages Configuration
+
+# Build Configuration
+build:
+  command: npm run build
+  directory: out
+  node_version: 18
+
+# Environment Variables (none required for this project)
+environment: {}
+
+# Compatibility Settings
+compatibility_date: 2026-01-17
+compatibility_flags: []
+
+# Custom Headers (already configured in next.config.ts)
+# These will be applied automatically
+
+# Routes (SPA routing)
+routes:
+  - path: "/*"
+    priority: 1
+
+# Redirects (if needed)
+redirects: []
