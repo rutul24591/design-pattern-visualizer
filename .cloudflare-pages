@@ -11,7 +11,7 @@ environment: {}
 
 # Compatibility Settings
 compatibility_date: 2026-01-17
-compatibility_flags: []
+compatibility_flags: [nodejs_compat]
 
 # Custom Headers (already configured in next.config.ts)
 # These will be applied automatically
