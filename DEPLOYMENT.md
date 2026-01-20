@@ -5,24 +5,28 @@ This guide covers deploying the Design Pattern Visualizer to Cloudflare Pages, a
 ## Why Cloudflare Pages?
 
 ✅ **Perfect for Static Sites**
+
 - Next.js static export support
 - Global CDN with 200+ data centers
 - Automatic HTTPS and SSL certificates
 - Built-in DDoS protection
 
 ✅ **Performance**
+
 - Edge caching worldwide
 - HTTP/3 support
 - Image optimization
 - Instant cache purging
 
 ✅ **Developer Experience**
+
 - Git integration (GitHub, GitLab)
 - Automatic deployments on push
 - Preview deployments for PRs
 - Rollback to any previous deployment
 
 ✅ **Cost**
+
 - Free tier: Unlimited requests, 500 builds/month
 - No bandwidth limits
 - No additional costs for traffic spikes
@@ -167,11 +171,13 @@ If your domain is elsewhere:
 Cloudflare Pages automatically deploys:
 
 ✅ **Production Deployments**
+
 - Triggered by pushes to `main` branch
 - URL: `design-pattern-visualizer.pages.dev`
 - Also deploys to custom domain if configured
 
 ✅ **Preview Deployments**
+
 - Triggered by PRs and other branches
 - Unique URL for each deployment
 - Perfect for testing before merging
@@ -208,11 +214,13 @@ Create `.node-version` file for specific Node version:
 ### Build Cache
 
 Cloudflare Pages caches:
+
 - `node_modules`
 - `.next/cache`
 - Build outputs
 
 To clear cache:
+
 1. Go to project settings
 2. Click "Clear build cache"
 3. Trigger new deployment
@@ -222,23 +230,26 @@ To clear cache:
 ### Caching Strategy
 
 Cloudflare automatically caches:
+
 - Static assets (JS, CSS, images)
 - HTML pages
 - API responses (if applicable)
 
 **Cache Headers** (already configured in `next.config.ts`):
+
 ```typescript
 headers: [
   {
-    key: 'Cache-Control',
-    value: 'public, max-age=31536000, immutable',
+    key: "Cache-Control",
+    value: "public, max-age=31536000, immutable",
   },
-]
+];
 ```
 
 ### Speed Optimizations
 
 ✅ **Implemented:**
+
 - Static HTML generation
 - Optimized bundle size
 - Code splitting
@@ -246,6 +257,7 @@ headers: [
 - Security headers
 
 ✅ **Cloudflare Provides:**
+
 - Global CDN distribution
 - HTTP/3 and QUIC support
 - Brotli compression
@@ -257,10 +269,12 @@ headers: [
 ### Cloudflare Analytics
 
 Access via Dashboard:
+
 1. Go to your Pages project
 2. Click "Analytics" tab
 
 **Available Metrics:**
+
 - Total requests
 - Bandwidth usage
 - Cache hit ratio
@@ -270,6 +284,7 @@ Access via Dashboard:
 ### Web Analytics (Optional)
 
 Enable Cloudflare Web Analytics:
+
 1. Go to Analytics > Web Analytics
 2. Add site
 3. Copy tracking code
@@ -297,18 +312,21 @@ Enable Cloudflare Web Analytics:
 ### Build Failures
 
 **Issue**: Build fails with "Module not found"
+
 ```bash
 Solution: Ensure all dependencies in package.json
 Run locally: npm install && npm run build
 ```
 
 **Issue**: Out of memory during build
+
 ```bash
 Solution: Increase Node memory
 Add to package.json: "build": "NODE_OPTIONS='--max_old_space_size=4096' next build"
 ```
 
 **Issue**: Build timeout
+
 ```bash
 Solution: Optimize build process
 - Remove unnecessary dependencies
@@ -319,18 +337,21 @@ Solution: Optimize build process
 ### Deployment Issues
 
 **Issue**: 404 on all pages except home
+
 ```bash
 Solution: Check output directory is "out" not ".next"
 Verify next.config.ts has output: "export"
 ```
 
 **Issue**: Assets not loading
+
 ```bash
 Solution: Check basePath configuration
 Ensure all assets use relative paths
 ```
 
 **Issue**: Preview deployments not working
+
 ```bash
 Solution: Check branch permissions
 Ensure GitHub integration is active
@@ -340,6 +361,7 @@ Verify build settings
 ### Performance Issues
 
 **Issue**: Slow initial load
+
 ```bash
 Solution:
 - Check bundle size (should be < 300KB)
@@ -349,6 +371,7 @@ Solution:
 ```
 
 **Issue**: High cache miss rate
+
 ```bash
 Solution:
 - Review cache headers
@@ -361,6 +384,7 @@ Solution:
 ### Security Headers
 
 Already configured in `next.config.ts`:
+
 - Content Security Policy (CSP)
 - X-Frame-Options
 - X-Content-Type-Options
@@ -391,6 +415,7 @@ Enable in Cloudflare Dashboard:
 ### Cloudflare Pages Free Tier
 
 ✅ **Included:**
+
 - Unlimited requests
 - Unlimited bandwidth
 - 500 builds per month
@@ -398,6 +423,7 @@ Enable in Cloudflare Dashboard:
 - 100 custom domains per project
 
 💰 **Limits:**
+
 - Max 20,000 files per deployment
 - Max 25 MB per file
 - 20 MB max upload size
@@ -405,6 +431,7 @@ Enable in Cloudflare Dashboard:
 ### When to Upgrade
 
 Consider paid plans for:
+
 - More than 500 builds/month
 - Multiple concurrent builds
 - Advanced analytics
@@ -433,7 +460,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: "npm"
       - run: npm ci
       - run: npm run build
       - run: npm test
@@ -479,18 +506,21 @@ jobs:
 ## Support & Resources
 
 ### Cloudflare Resources
+
 - **Documentation**: https://developers.cloudflare.com/pages/
 - **Community**: https://community.cloudflare.com/
 - **Status**: https://www.cloudflarestatus.com/
 - **Support**: https://dash.cloudflare.com/?to=/:account/support
 
 ### Next.js Static Export
+
 - **Documentation**: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
 - **GitHub**: https://github.com/vercel/next.js/
 
 ## Checklist
 
 ### Pre-Deployment
+
 - [ ] Code pushed to GitHub
 - [ ] Local build successful
 - [ ] Tests passing
@@ -498,6 +528,7 @@ jobs:
 - [ ] README updated
 
 ### Deployment
+
 - [ ] Cloudflare account created
 - [ ] Repository connected
 - [ ] Build settings configured
@@ -505,6 +536,7 @@ jobs:
 - [ ] Production URL accessible
 
 ### Post-Deployment
+
 - [ ] Custom domain configured (optional)
 - [ ] Analytics enabled
 - [ ] Performance verified
